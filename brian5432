@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/brian1234-ux/SCRIPT-ULTIMO/main/brian5432", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/brian1234-ux/SCRIPT-ULTIMO/refs/heads/main/brian5432"))()
 
 local loaded = false
  
