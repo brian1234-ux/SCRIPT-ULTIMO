@@ -1,55 +1,55 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/brian1234-ux/SCRIPT-ULTIMO/main/brian5432", true))()
 
 local loaded = false
+ 
+   success, err = pcall(function()
+       while not loaded do
+    if game["loaded"] then
+        
+        loaded = true
+        break
+    end
+    end
+   end)
+            if success then
 
-success, err = pcall(function()
-while not loaded do
+                warn(" game loaded Function executed successfully")
 
-if game["loaded"] then
-
-loaded = true
-break
-
-end
-end
-end)
-
-if success then
-
-warn(" game loaded Function executed successfully")
-
-else
-warn("Error occurred:", err)
-
-end
+             
+                
+            else
+                warn("Error occurred:", err)
+            
+            end
 
 print("game loaded")
 local success, result = pcall(function()
-repeat
-task.wait()
+    repeat
+        task.wait()
+    until game.Players.LocalPlayer ~= nil and game.Players.LocalPlayer.Name ~= nil and
+        game.Players.LocalPlayer:GetMouse() ~= nil
 
-until game.Players.LocalPlayer ~= nil and game.Players.LocalPlayer.Name ~= nil and
-game.Players.LocalPlayer:GetMouse() ~= nil
-
-repeat
-task.wait()
-
-until game:IsLoaded()
-game:WaitForChild("ReplicatedStorage")
-game.ReplicatedStorage:WaitForChild("Datas")
-game.ReplicatedStorage.Datas:WaitForChild(game.Players.LocalPlayer.UserId)
-
+    repeat
+        task.wait()
+    until game:IsLoaded()
+    game:WaitForChild("ReplicatedStorage")
+    game.ReplicatedStorage:WaitForChild("Datas")
+    game.ReplicatedStorage.Datas:WaitForChild(game.Players.LocalPlayer.UserId)
 end)
 if success then
 
-warn(" game loaded Function executed successfully")
 
-else
-warn("Error occurred:", err)
 
-end
+                warn(" game loaded Function executed successfully")
+
+                
+            else
+                warn("Error occurred:", err)
+            
+            end
 
 task.wait()
+
 
 local stackneeded = true
 local targetted;
@@ -65,266 +65,238 @@ getgenv().dead = false
 getgenv().rebirthed = false
 
 function format_number(number)
-local suffixes = {"", "K", "M", "B", "T", "QD"}
-local suffix_index = 1
+    local suffixes = {"", "K", "M", "B", "T", "QD"}
+    local suffix_index = 1
 
-while math.abs(number) >= 1000 and suffix_index < #suffixes do
-number = number / 1000.0
-suffix_index = suffix_index + 1
+    while math.abs(number) >= 1000 and suffix_index < #suffixes do
+        number = number / 1000.0
+        suffix_index = suffix_index + 1
+    end
 
+    return string.format("%.2f%s", number, suffixes[suffix_index])
 end
 
-return string.format("%.2f%s", number, suffixes[suffix_index])
-end
 
 function getCheckValue()
-data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
-local a = data.Strength.Value
-local b = data.Energy.Value
-local c = data.Defense.Value
-local d = data.Speed.Value
+    data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
+    local a = data.Strength.Value
+    local b = data.Energy.Value
+    local c = data.Defense.Value
+    local d = data.Speed.Value
 
-local smallest = a
+    local smallest = a 
 
-if b < smallest then
-smallest = b
+    if b < smallest then
+        smallest = b
+    end
 
-end
+    if c < smallest then
+        smallest = c
+    end
 
-if c < smallest then
-smallest = c
+    if d < smallest then
+        smallest = d
+    end
 
-end
-
-if d < smallest then
-smallest = d
-
-end
-
-checkValue = smallest
-return checkValue
-
+    checkValue = smallest
+    return checkValue
 end
 
 local PaidFormsList = {
-Evil = {{
-name = "SSJ2 Kaioken",
-reqvalue = 50000,
-endrangevalue = 160000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "LSSJ Kaioken",
-reqvalue = 160001,
-endrangevalue = 250000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "Mystic Kaioken",
-reqvalue = 250001,
-endrangevalue = 550000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "SSJ5",
-reqvalue = 550001,
-endrangevalue = 800000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950469
-
-}, {
-name = "LSSJ3",
-reqvalue = 800001,
-endrangevalue = 1000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "SSJG4",
-reqvalue = 1000001,
-endrangevalue = 1800000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950465
-
-}, {
-name = "LSSJ4",
-reqvalue = 1800001,
-endrangevalue = 3000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "LSSJG",
-reqvalue = 3000001,
-endrangevalue = 4000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "Super Broly",
-reqvalue = 4000000,
-endrangevalue = 30000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 7837022
-
-}, {
-name = "True God of Destruction",
-reqvalue = 30000001,
-endrangevalue = 50000000,
-alignment = "Evil",
-rebirthReq = 10,
-formOwned = false,
-GamePassID = 9848987
-
-}, {
-name = "SSJB4",
-reqvalue = 50000001,
-endrangevalue = 100000000000000000000000,
-alignment = "Neutral",
-rebirthReq = 13,
-formOwned = false,
-GamePassID = 6950465
-
-}, {
-name = "Blanco",
-reqvalue = 120000001,
-endrangevalue = 100000000000000000000000,
-alignment = "Neutral",
-rebirthReq = 24,
-formOwned = false,
-GamePassID = 676684901
-
-}},
-Good = {{
-name = "SSJ2 Kaioken",
-reqvalue = 50000,
-endrangevalue = 160000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "LSSJ Kaioken",
-reqvalue = 160001,
-endrangevalue = 250000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "Mystic Kaioken",
-reqvalue = 250001,
-endrangevalue = 550000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950449
-
-}, {
-name = "SSJ5",
-reqvalue = 550001,
-endrangevalue = 800000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950469
-
-}, {
-name = "LSSJ3",
-reqvalue = 800001,
-endrangevalue = 1000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "SSJG4",
-reqvalue = 1000001,
-endrangevalue = 1800000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6950465
-
-}, {
-name = "LSSJ4",
-reqvalue = 1800001,
-endrangevalue = 3000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "LSSJG",
-reqvalue = 3000001,
-endrangevalue = 4000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 6951002
-
-}, {
-name = "Super Broly",
-reqvalue = 4000000,
-endrangevalue = 30000000,
-alignment = "Neutral",
-rebirthReq = 0,
-formOwned = false,
-GamePassID = 7837022
-
-}, {
-name = "True God of Creation",
-reqvalue = 30000001,
-endrangevalue = 50000000,
-alignment = "Good",
-rebirthReq = 10,
-formOwned = false,
-GamePassID = 9848987
-
-}, {
-name = "SSJB4",
-reqvalue = 50000001,
-endrangevalue = 120000000,
-alignment = "Neutral",
-rebirthReq = 13,
-formOwned = false,
-GamePassID = 6950465
-
-}, {
-name = "Blanco",
-reqvalue = 120000001,
-endrangevalue = 100000000000000000000000,
-alignment = "Neutral",
-rebirthReq = 24,
-formOwned = false,
-GamePassID = 676684901
-
-}}
+    Evil = {{
+        name = "SSJ2 Kaioken",
+        reqvalue = 50000,
+        endrangevalue = 160000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "LSSJ Kaioken",
+        reqvalue = 160001,
+        endrangevalue = 250000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "Mystic Kaioken",
+        reqvalue = 250001,
+        endrangevalue = 550000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "SSJ5",
+        reqvalue = 550001,
+        endrangevalue = 800000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950469
+    }, {
+        name = "LSSJ3",
+        reqvalue = 800001,
+        endrangevalue = 1000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "SSJG4",
+        reqvalue = 1000001,
+        endrangevalue = 1800000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950465
+    }, {
+        name = "LSSJ4",
+        reqvalue = 1800001,
+        endrangevalue = 3000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "LSSJG",
+        reqvalue = 3000001,
+        endrangevalue = 4000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "Super Broly",
+        reqvalue = 4000000,
+        endrangevalue = 30000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 7837022
+    }, {
+        name = "True God of Destruction",
+        reqvalue = 30000001,
+        endrangevalue = 50000000,
+        alignment = "Evil",
+        rebirthReq = 10,
+        formOwned = false,
+        GamePassID = 9848987
+    }, {
+        name = "SSJB4",
+        reqvalue = 50000001,
+        endrangevalue = 100000000000000000000000,
+        alignment = "Neutral",
+        rebirthReq = 13,
+        formOwned = false,
+        GamePassID = 6950465
+    }, {
+        name = "Blanco",
+        reqvalue = 120000001,
+        endrangevalue = 100000000000000000000000,
+        alignment = "Neutral",
+        rebirthReq = 24,
+        formOwned = false,
+        GamePassID = 676684901
+    }},
+    Good = {{
+        name = "SSJ2 Kaioken",
+        reqvalue = 50000,
+        endrangevalue = 160000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "LSSJ Kaioken",
+        reqvalue = 160001,
+        endrangevalue = 250000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "Mystic Kaioken",
+        reqvalue = 250001,
+        endrangevalue = 550000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950449
+    }, {
+        name = "SSJ5",
+        reqvalue = 550001,
+        endrangevalue = 800000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950469
+    }, {
+        name = "LSSJ3",
+        reqvalue = 800001,
+        endrangevalue = 1000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "SSJG4",
+        reqvalue = 1000001,
+        endrangevalue = 1800000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6950465
+    }, {
+        name = "LSSJ4",
+        reqvalue = 1800001,
+        endrangevalue = 3000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "LSSJG",
+        reqvalue = 3000001,
+        endrangevalue = 4000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 6951002
+    }, {
+        name = "Super Broly",
+        reqvalue = 4000000,
+        endrangevalue = 30000000,
+        alignment = "Neutral",
+        rebirthReq = 0,
+        formOwned = false,
+        GamePassID = 7837022
+    }, {
+        name = "True God of Creation",
+        reqvalue = 30000001,
+        endrangevalue = 50000000,
+        alignment = "Good",
+        rebirthReq = 10,
+        formOwned = false,
+        GamePassID = 9848987
+    }, {
+        name = "SSJB4",
+        reqvalue = 50000001,
+        endrangevalue = 120000000,
+        alignment = "Neutral",
+        rebirthReq = 13,
+        formOwned = false,
+        GamePassID = 6950465
+    }, {
+        name = "Blanco",
+        reqvalue = 120000001,
+        endrangevalue = 100000000000000000000000,
+        alignment = "Neutral",
+        rebirthReq = 24,
+        formOwned = false,
+        GamePassID = 676684901
+    }}
 }
 
 local FormsList = {
@@ -1042,34 +1014,6 @@ local attacks2 = {"Super Dragon Fist", "God Slicer", "Spirit Barrage", "Mach Kic
 local attacks = { "Vital Strike", "Uppercut",
                  "Spirit Breaking Cannon", "Vanish Strike"
                 }
-
-local RebValue = ""
-
-local rebirthOnJoin = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId].Rebirth.Value
-
-
-task.spawn(function()
-    while true and task.wait() do
-        pcall(function()
-            data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
-            while true and task.wait() do
-                task.wait()
-                game:GetService("ReplicatedStorage").Package.Events.reb:InvokeServer() -- reb
-                RebValue = data.Rebirth.Value
-                if rebirthOnJoin ~= RebValue then
-                   
-
-                    local A_1 = "Earth"
-                    local Event = game:GetService("ReplicatedStorage").Package.Events.TP
-
-                    Event:InvokeServer(A_1)
-
-                    task.wait()
-                end
-            end
-        end)
-    end
-end)
 
 task.spawn(function()
     while true and task.wait() do
